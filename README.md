@@ -1,4 +1,4 @@
-# baghabot
+# Baghabot : Telegram Bot using Python
 A telegram bot example to do basic functions like sending gifs / memes / images etc. using Python.
 
 **Instructions :**
