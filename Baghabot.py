@@ -3,9 +3,9 @@ from telegram.ext import*
 import random as r
 
 
-b="...."  # <<< add your telebot id here
+api="...."  # <<< add your bot's API token here
 
-bot=Bot(b)
+bot=Bot(api)
 
 updater=Updater(b,use_context=True)
 ds= updater.dispatcher
