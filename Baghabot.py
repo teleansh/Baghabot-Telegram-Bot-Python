@@ -1,6 +1,7 @@
 from telegram import*
 from telegram.ext import*
 import random as r
+import praw
 
 
 api="...."  # <<< add your bot's API token here
@@ -10,6 +11,23 @@ bot=Bot(api)
 updater=Updater(b,use_context=True)
 ds= updater.dispatcher
 
+
+#reddit details
+reddit = praw.Reddit(client_id='', \
+                     client_secret='', \
+                     user_agent='', \
+                     username='', \
+                     password='')
+
+
+def memes(update:Update,context:CallbackContext):
+	sublists = ['terriblefacebookmemes','2meirl4meirl','marvelmemes','Memes_of_the_dank','fffffffuuuuuuuuuuuu','BikiniBottomTwitter','me_irl','memes','dankmemes','antimeme','shitposting','comedyheaven','wholesomememes','MemesIRL']
+	subreddit = reddit.subreddit(r.choice(sublists))
+	random_post=posts[r.randint(0, 49)]
+	if (".gif" in random_post.url):
+        	bot.sendAnimation(chat_id = update.effective_chat.id,animation = random_post.url,caption = random_post.title+' (r/'+str(subreddit)+')')
+	else:
+		bot.sendPhoto(chat_id = update.effective_chat.id,photo = random_post.url,caption = random_post.title+' (r/'+str(subreddit)+')')
 
 
 def intro(update:Update,context:CallbackContext):
